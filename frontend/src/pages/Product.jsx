@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -131,9 +132,9 @@ const Product = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await publicRequest.get(`/products/find/${id}`);
+        const res = await publicRequest.get(`/api/products/find/${id}`);
         setProduct(res.data);
-      } catch {}
+      } catch (err) {}
     };
     getProduct();
   }, [id]);
